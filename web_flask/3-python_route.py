@@ -29,7 +29,8 @@ def disp_var(text):
 @app.route('/python/<text>', strict_slashes=False)
 def disp_py_var(text):
     """Variables testng"""
-    return 'Python %s' % escape(text).replace('_', ' ') 
+    return 'Python %s' % escape(text).replace('_', ' ')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
