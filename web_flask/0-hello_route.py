@@ -2,7 +2,6 @@
 """Flask package"""
 
 from flask import Flask
-import os
 app = Flask(__name__)
 
 
@@ -11,6 +10,5 @@ def hello_world():
     """hello world testing"""
     return 'Hello HBNB!'
 
-
-os.environ['FLASK_APP'] = "./web_flask/0-hello_route.py"
-os.system("flask run --host=0.0.0.0")
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
