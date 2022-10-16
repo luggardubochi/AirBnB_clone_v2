@@ -23,6 +23,7 @@ class DBStorage:
     storage system"""
     __engine = None
     __session = None
+    __sess = None
 
     def __init__(self):
         """Instatiate the engine and drop if test database"""
@@ -70,8 +71,9 @@ class DBStorage:
         session_factory = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
+        self.__sess = Session
         self.__session = Session()
 
     def close(self):
         """call remove() method on the private session attribute"""
-        self.__session.remove()
+        self.__sess.remove()
