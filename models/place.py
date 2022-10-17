@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
 from models.base_model import BaseModel
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, Table
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
 import models
@@ -13,7 +13,7 @@ class Place(BaseModel, Base):
     __tablename__ = "places"
     place_amenity = Table('association', Base.metadata,
                           Column('place_id', ForeignKey('places.id')),
-                          Column('places.id', ForeignKey('amenities.id'))
+                          Column('places.id', ForeignKey('amenities.id')))
     city_id = Column(String(60), ForeignKey('cities.id'))
     user_id = Column(String(60), ForeignKey('users.id'))
     name = Column(String(128), nullable=False)
