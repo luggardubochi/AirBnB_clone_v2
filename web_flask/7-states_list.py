@@ -16,10 +16,9 @@ def get_states_list():
 
 
 @app.teardown_appcontext
-def tear_down():
+def tear_down(exception):
     """Relwase Resources"""
-    return 'Hello HBNB!'
-
+    storage.close()
 
 
 if __name__ == '__main__':
