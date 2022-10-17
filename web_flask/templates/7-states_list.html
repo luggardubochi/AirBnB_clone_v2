@@ -6,8 +6,8 @@
     <BODY>
         <H1>States</H1>
 		<UL>
-		{% for state in states %}
-			<LI>{{ state|e }}</LI>
+		{% for k in states %}
+		<LI>{{ states[k]['id']|e }}: <B>{{ states[k]['name']|e }}</B></LI>
 		{% endfor %}
 		</UL>
     </BODY>
