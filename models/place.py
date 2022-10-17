@@ -11,6 +11,9 @@ from models.base_model import Base
 class Place(BaseModel, Base):
     """ A place to stay """
     __tablename__ = "places"
+    place_amenity = Table('association', Base.metadata,
+                          Column('place_id', ForeignKey('places.id')),
+                          Column('places.id', ForeignKey('amenities.id'))
     city_id = Column(String(60), ForeignKey('cities.id'))
     user_id = Column(String(60), ForeignKey('users.id'))
     name = Column(String(128), nullable=False)
@@ -24,6 +27,8 @@ class Place(BaseModel, Base):
     amenity_ids = []
     if models.storage_t == 'db':
         reviews = relationship("Review",  backref="place", cascade="delete")
+        amenities = relationship("Amenity",  backref="place_amenity",
+                                 cascade="delete", viewonly=False)
     else:
         @property
         def reviews(self):
