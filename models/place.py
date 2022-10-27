@@ -23,8 +23,8 @@ class Place(BaseModel, Base):
     """ A place to stay """
     if (models.storage_t == 'db'):
         __tablename__ = "places"
-        city_id = Column(String(60), ForeignKey('cities.id'))
-        user_id = Column(String(60), ForeignKey('users.id'))
+        city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
+        user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
         name = Column(String(128), nullable=False)
         description = Column(String(128))
         number_rooms = Column(Integer(), default=0, nullable=False)
