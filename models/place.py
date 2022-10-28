@@ -7,27 +7,35 @@ from sqlalchemy import ForeignKey
 import models
 from models.base_model import Base
 
+if (models.storage_t == 'db'):
+    place_amenity = Table('place_amenity', Base.metadata,
+                          Column('place_id', String(60),
+                                 ForeignKey('places.id', onupdate='CASCADE',
+                                            ondelete='CASCADE'),
+                                 primary_key=True),
+                          Column('amenity_id', String(60),
+                                 ForeignKey('amenities.id', onupdate='CASCADE',
+                                            ondelete='CASCADE'),
+                                 primary_key=True))
+
 
 class Place(BaseModel, Base):
     """ A place to stay """
-    __tablename__ = "places"
-    place_amenity = Table('association', Base.metadata,
-                          Column('place_id', ForeignKey('places.id')),
-                          Column('places.id', ForeignKey('amenities.id')))
-    city_id = Column(String(60))
-    user_id = Column(String(60), ForeignKey('users.id'))
-    name = Column(String(128), nullable=False)
-    description = Column(String(128))
-    number_rooms = Column(Integer(), default=0, nullable=False)
-    number_bathrooms = Column(Integer(), default=0, nullable=False)
-    max_guest = Column(Integer(), default=0, nullable=False)
-    price_by_night = Column(Integer(), default=0, nullable=False)
-    latitude = Column(Float())
-    longitude = Column(Float())
-    if models.storage_t == 'db':
+    if (models.storage_t == 'db'):
+        __tablename__ = "places"
+        city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
+        user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
+        name = Column(String(128), nullable=False)
+        description = Column(String(128))
+        number_rooms = Column(Integer(), default=0, nullable=False)
+        number_bathrooms = Column(Integer(), default=0, nullable=False)
+        max_guest = Column(Integer(), default=0, nullable=False)
+        price_by_night = Column(Integer(), default=0, nullable=False)
+        latitude = Column(Float())
+        longitude = Column(Float())
         reviews = relationship("Review",  backref="place", cascade="delete")
-        #amenities = relationship("Amenity",  backref="place_amenity",
-        #                         cascade="delete", viewonly=False)
+        amenities = relationship("Amenity",  secondary=place_amenity,
+                                 viewonly=False)
     else:
         @property
         def reviews(self):

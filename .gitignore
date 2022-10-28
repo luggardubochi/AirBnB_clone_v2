@@ -6,4 +6,4 @@
 *.layout
 *.win
 !.gitignore
-/*__pycache__
+__pycache__/
