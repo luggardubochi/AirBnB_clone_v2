@@ -8,11 +8,11 @@
         <UL>
 
             {% for state in stateCity %}
-            <LI>{{ state }}: <B>{{ stateCity[state]['name'] }}</B>
+            <LI>{{ stateCity[state][0] }}: <B>{{ state }}</B>
                 <UL>
 
-                        {% for city in stateCity[state]['cities'] %}
-			<LI>{{ city }}: <B>{{ city }}</B></LI>
+                        {% for city in stateCity[state][1] %}
+			<LI>{{ city['id'] }}: <B>{{ city['name'] }}</B></LI>
                         {% endfor %}
                 </UL>
             </LI>
