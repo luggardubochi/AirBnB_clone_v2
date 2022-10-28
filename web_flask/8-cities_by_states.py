@@ -25,8 +25,8 @@ def get_states_cities_list():
     states = storage.all(State).values()
     for state in states:
         states_cities[state.name] = [state.id,
-                                     sorted({cities.to_dict() for x in cities
-                                             if cities[x].state_id == state.id},
+                                     sorted([cities[x].to_dict() for x in cities
+                                             if cities[x].state_id == state.id],
                                             key=lambda k: k['name'])]
     return render_template('8-cities_by_states.html', stateCity=states_cities)
 
