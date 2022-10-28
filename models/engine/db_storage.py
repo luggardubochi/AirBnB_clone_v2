@@ -23,7 +23,6 @@ class DBStorage:
     storage system"""
     __engine = None
     __session = None
-    __sess = None
 
     def __init__(self):
         """Instatiate the engine and drop if test database"""

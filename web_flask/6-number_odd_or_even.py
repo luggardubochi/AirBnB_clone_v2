@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Flask package"""
 
+from api.v1.views.index import *
 from flask import Flask, escape, render_template
 app = Flask(__name__)
 

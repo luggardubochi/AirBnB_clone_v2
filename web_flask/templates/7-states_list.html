@@ -7,7 +7,7 @@
         <H1>States</H1>
 		<UL>
 		{% for k in states %}
-		<LI>{{ states[k]['id']|e }}: <B>{{ states[k]['name']|e }}</B></LI>
+		<LI>{{ k['id'] }}: <B>{{ k['name'] }}</B></LI>
 		{% endfor %}
 		</UL>
     </BODY>
