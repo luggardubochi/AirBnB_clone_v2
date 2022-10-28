@@ -11,11 +11,9 @@ app = Flask(__name__)
 @app.route('/states_list', strict_slashes=False)
 def get_states_list():
     """Get sttes list"""
-    states = storage.all(State)
-    states_dict = {}
-    for s in states:
-        states_dict[s] = states[s].to_dict()
-    return render_template('7-states_list.html', states=states_dict)
+    states = storage.all(State).values()
+    states = sorted(states, key=lambda k: k.name)
+    return render_template('7-states_list.html', states=states)
 
 
 @app.teardown_appcontext
