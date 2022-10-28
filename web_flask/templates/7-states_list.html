@@ -5,10 +5,10 @@
     </HEAD>
     <BODY>
         <H1>States</H1>
-		<UL>
+	<UL>
 		{% for k in states %}
 		<LI>{{ states[k]['id']|e }}: <B>{{ states[k]['name']|e }}</B></LI>
 		{% endfor %}
-		</UL>
+	</UL>
     </BODY>
 </HTML>
