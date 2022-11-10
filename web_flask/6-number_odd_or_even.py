@@ -6,7 +6,7 @@ from flask import Flask, escape, render_template
 app = Flask(__name__)
 
 
-@app.route("/airbnb-onepage/", strict_slashes=False)
+@app.route("/", strict_slashes=False)
 def hello_world():
     """hello world testing"""
     return 'Hello HBNB!'
