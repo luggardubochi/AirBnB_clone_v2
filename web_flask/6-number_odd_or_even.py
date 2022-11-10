@@ -6,7 +6,7 @@ from flask import Flask, escape, render_template
 app = Flask(__name__)
 
 
-@app.route("/", strict_slashes=False)
+@app.route('/', strict_slashes=False)
 def hello_world():
     """hello world testing"""
     return 'Hello HBNB!'
@@ -45,11 +45,11 @@ def disp_num_temp(n):
     return render_template('5-number.html', n=n)
 
 
-@app.route('/airbnb-dynamic/number_odd_or_even/<int:n>', strict_slashes=False)
+@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def disp_odd_even(n):
     """Number variables testng"""
     return render_template('6-number_odd_or_even.html', n=n)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0', port=5000)
